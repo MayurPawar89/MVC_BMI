@@ -1,0 +1,99 @@
+﻿@model MVC_BMEApplication.Models.Company
+@{
+    ViewBag.Title = "Company Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("CompanyProfile", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Company_ID)
+    @*@Html.HiddenFor(model => model.Role_ID)*@
+    
+    
+    <div class="row">
+        <div class="col-md-6 form-group">
+            @Html.LabelFor(model => model.Company_Name, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Company_Name, new { @class = "form-control", @placeholder = "Company Name" })
+                @Html.ValidationMessageFor(model => model.Company_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6 form-group ">
+            @Html.LabelFor(model => model.Billing_Address, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Billing_Address, new { @class = "form-control", @placeholder = "Billing Address" })
+                @Html.ValidationMessageFor(model => model.Billing_Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            @Html.LabelFor(model => model.GST_No, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.GST_No, new { @class = "form-control", @placeholder = "GST No" })
+                @Html.ValidationMessageFor(model => model.GST_No, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6 form-group ">
+            @Html.LabelFor(model => model.PAN_No, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.PAN_No, new { @class = "form-control", @placeholder = "PAN No" })
+                @Html.ValidationMessageFor(model => model.PAN_No, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            @Html.LabelFor(model => model.HSN_Code, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.HSN_Code, new { @class = "form-control", @placeholder = "HSN Code" })
+                @Html.ValidationMessageFor(model => model.HSN_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6 form-group">
+            @Html.LabelFor(model => model.GST_Per, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.GST_Per, new { @class = "form-control", @placeholder = "GST Per" })
+                @Html.ValidationMessageFor(model => model.GST_Per, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            @Html.LabelFor(model => model.Contact_No, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Contact_No, new { @class = "form-control", @placeholder = "Contact No" })
+                @Html.ValidationMessageFor(model => model.Contact_No, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-md-6 form-group">
+            @Html.LabelFor(model => model.Email_ID, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.TextBoxFor(model => model.Email_ID, new { @class = "form-control", @placeholder = "Email ID" })
+                @Html.ValidationMessageFor(model => model.Email_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="submit" class="btn btn-default" />
+            <a href="@Url.Action("CompanyProfile", "Account")" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+    <div class="h5 mb-3 font-weight-normal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        }
+    </script>
+}

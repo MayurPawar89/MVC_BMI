@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Manage User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card card-box">
+    <div class="card-head">
+        <div class="tools">
+            <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+            <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+            <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table table-hover table-checkable order-column full-width dataTable no-footer" id="tblEmployeeList">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Email ID</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.UserList)
+                    {
+                        <tr>
+                            <td>@item.UserName </td>
+                            <td>@item.EmailID </td>
+                            <td>@item.Role_Name</td>
+                            <td>
+                                <a href="@Url.Action("ViewProfile", "Account", new { UserID = item.User_ID })" class="btn btn-tbl-edit">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a href="#" class="btn btn-tbl-delete">
+                                    <i class="fa fa-trash-o "></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#tblEmployeeList').DataTable({
+                "bLengthChange": false, //thought this line could hide the LengthMenu
+            });
+        });
+
+    </script>
+}

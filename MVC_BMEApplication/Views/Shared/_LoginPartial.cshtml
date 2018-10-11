@@ -1,0 +1,77 @@
+﻿@*@using Microsoft.AspNet.Identity*@
+@if (Session.Count > 0)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav pull-right">
+            <li class="dropdown dropdown-user">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
+                    <img src="~/images/2.jpg" alt="user" class="profile-pic">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-default dropdown-content wow zoomIn">
+                    <li>
+                        <div class="dw-user-box">
+                            <div class="u-img"><img src="~/images/2.jpg" alt="user"></div>
+                            <div class="u-text">
+                                <h4>@Session["UserFullName"]</h4>
+                                <a class="btn btn-info cyan white-text btn-small" href="@Url.Action("ViewProfile", "Account", new { UserID = Session["UserID"] })">View Profile</a>
+
+                                @*@Html.ActionLink("View Profile", "ViewProfile", "Account", new { UserID = Session["UserID"] }, null)*@
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("CompanyProfile", "Account")">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i> Company Profile
+                    </a>
+                </li>
+                    <li>
+                        <a href="@Url.Action("ManageUser", "Account")">
+                            <i class="fa fa-user"></i> Manage Users
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ChangePassword", "Account")">
+                            <i class="fa fa-pencil"></i> Change Password
+                        </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="@Url.Action("Settings", "Account")">
+                            <i class="fa fa-cogs"></i> Settings
+                        </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                            <i class="fa fa-sign-out"></i> Log Out
+                        </a>
+                    </li>
+                @*<li>@Html.ActionLink("Manage User", "ManageUser", "Account")</li>
+                <li>@Html.ActionLink("Change Password", "ChangePassword", "Account")</li>
+                <li role="separator" class="divider"></li>
+                <li>@Html.ActionLink("Settings", "Settings", "Account")</li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log out</a></li>*@
+            </ul>
+        </li>
+    </ul>
+    @*<ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Hello @Session["UserFullName"]
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                </ul>
+            </li>
+        </ul>*@
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
