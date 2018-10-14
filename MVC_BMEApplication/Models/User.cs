@@ -88,7 +88,7 @@ namespace MVC_BMEApplication.Models
         [Display(Name="New Password")]
         public string NewPassword { get; set; }
         [Display(Name="Confirm Password")]
-        [Compare("NewPassword")]
+        //[Compare("NewPassword")]
         public string ConfirmPassword { get; set; }
         [Display(Name="Role Name")]
         public string Role_Name { get; set; }
@@ -186,7 +186,7 @@ namespace MVC_BMEApplication.Models
             return nResult;
         }
 
-        public List<User> GetUserInformation(Int64 nUserID=0)
+        public List<User> GetUserInformation(Int64 nUserID, string sTask)
         {
             DataTable _dt = null;
             List<User> lstUser = null;
@@ -194,15 +194,6 @@ namespace MVC_BMEApplication.Models
             DataAccess _DataAccess = new DataAccess();
             try
             {
-                string sTask = string.Empty;
-                if (nUserID==0)
-                {
-                    sTask = "ALL";
-                }
-                else
-                {
-                    sTask = "ONE";
-                }
                 _DataAccess.OpenConnection(false);
                 _DBParameters.clear();
                 _DBParameters.Add("@User_ID", nUserID, ParameterDirection.Input, SqlDbType.BigInt);
@@ -284,41 +275,41 @@ namespace MVC_BMEApplication.Models
 
             return nResult;
         }
-        public bool CheckValidPassword(Int64 nUserID, string sCurrentPassword)
-        {
-            bool bIsValidPassword = false;
-            DataTable _dt = null;
+        //public bool CheckValidPassword(Int64 nUserID, string sCurrentPassword)
+        //{
+        //    bool bIsValidPassword = false;
+        //    DataTable _dt = null;
 
-            DBParameters _DBParameters = new DBParameters();
-            DataAccess _DataAccess = new DataAccess();
-            try
-            {
-                _DataAccess.OpenConnection(false);
-                _DBParameters.clear();
-                _DBParameters.Add("@User_ID", nUserID, ParameterDirection.Input, SqlDbType.BigInt);
-                _DBParameters.Add("@CurrentPassword", sCurrentPassword, ParameterDirection.Input, SqlDbType.VarChar);
-                _DataAccess.Retrive("SP_CHECK_PASSWORD", _DBParameters, out _dt);
+        //    DBParameters _DBParameters = new DBParameters();
+        //    DataAccess _DataAccess = new DataAccess();
+        //    try
+        //    {
+        //        _DataAccess.OpenConnection(false);
+        //        _DBParameters.clear();
+        //        _DBParameters.Add("@User_ID", nUserID, ParameterDirection.Input, SqlDbType.BigInt);
+        //        _DBParameters.Add("@CurrentPassword", sCurrentPassword, ParameterDirection.Input, SqlDbType.VarChar);
+        //        _DataAccess.Retrive("SP_CHECK_PASSWORD", _DBParameters, out _dt);
 
-                _DataAccess.CloseConnection(false);
-                if (_dt != null && _dt.Rows.Count > 0)
-                {
-                    if (Convert.ToInt64(_dt.Rows[0][0]) == 1)
-                    {
-                        bIsValidPassword = true;
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                if (_DataAccess != null) { _DataAccess.RollBack(); _DataAccess.CloseConnection(false); }
-            }
-            finally
-            {
-                if (_DBParameters != null) { _DBParameters.Dispose(); }
-            }
+        //        _DataAccess.CloseConnection(false);
+        //        if (_dt != null && _dt.Rows.Count > 0)
+        //        {
+        //            if (Convert.ToInt64(_dt.Rows[0][0]) == 1)
+        //            {
+        //                bIsValidPassword = true;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        if (_DataAccess != null) { _DataAccess.RollBack(); _DataAccess.CloseConnection(false); }
+        //    }
+        //    finally
+        //    {
+        //        if (_DBParameters != null) { _DBParameters.Dispose(); }
+        //    }
 
-            return bIsValidPassword;
-        }
+        //    return bIsValidPassword;
+        //}
         #endregion
     }
 }

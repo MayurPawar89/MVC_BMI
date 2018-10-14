@@ -43,7 +43,7 @@ namespace MVC_BMEApplication.Models
         #endregion
 
         #region "Method"
-        public List<Role> GetAllRoles()
+        public List<Role> GetAllRoles(Int64 nRoleID, string sTask)
         {
             DataTable _dt = null;
             List<Role> lstRole = null;
@@ -51,11 +51,11 @@ namespace MVC_BMEApplication.Models
             DataAccess _DataAccess = new DataAccess();
             try
             {
-                string sTask = string.Empty;
-                
                 _DataAccess.OpenConnection(false);
                 _DBParameters.clear();
-                _DataAccess.Retrive("SP_GET_USER_ROLE", out _dt);
+                _DBParameters.Add("@Role_ID", nRoleID, ParameterDirection.Input, SqlDbType.BigInt);
+                _DBParameters.Add("@TASK", sTask, ParameterDirection.Input, SqlDbType.VarChar);
+                _DataAccess.Retrive("SP_GET_USER_ROLE",_DBParameters, out _dt);
 
                 _DataAccess.CloseConnection(false);
                 if (_dt != null && _dt.Rows.Count > 0)

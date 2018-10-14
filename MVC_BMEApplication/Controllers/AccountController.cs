@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVC_BMEApplication.ActionFilters;
 
 namespace MVC_BMEApplication.Controllers
 {
+    [ViewActionFilter]
     public class AccountController : Controller
     {
         // GET: Account
@@ -27,7 +29,7 @@ namespace MVC_BMEApplication.Controllers
                     Session["RoleID"] = oUser.Role_ID;
                     Session["RoleName"] = Convert.ToString(oUser.Role_Name);
                     Session["UserID"] = oUser.User_ID;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Dashboard", "Home");
                 }
                 else
                 {
@@ -50,7 +52,7 @@ namespace MVC_BMEApplication.Controllers
             {
                 Models.User oUser = new Models.User();
                 List<Models.User> lstUsers = new List<Models.User>();
-                lstUsers = oUser.GetUserInformation(Convert.ToInt64(Session["UserID"]));
+                lstUsers = oUser.GetUserInformation(Convert.ToInt64(Session["UserID"]),"ONE");
                 return View(lstUsers[0]);
             }
             return View();
@@ -60,30 +62,31 @@ namespace MVC_BMEApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (oUser.CheckValidPassword(oUser.User_ID,oUser.Password))
+                if (!oUser.Password.Equals(oUser.ConfirmPassword, StringComparison.CurrentCultureIgnoreCase))
                 {
-                    if (!oUser.Password.Equals(oUser.ConfirmPassword, StringComparison.CurrentCultureIgnoreCase))
+                    Int32 nOutput = oUser.ChangePassword(oUser.User_ID, oUser.Password, oUser.ConfirmPassword);
+                    switch (nOutput)
                     {
-                        Int32 nOutput = oUser.ChangePassword(oUser.User_ID, oUser.Password, oUser.ConfirmPassword);
-                        switch (nOutput)
-                        {
-                            case 1: ViewBag.Message = "Password changed successfully";
-                                break;
-                            case -1: ViewBag.Message = "User is not valid.";
-                                break;
-                            case -2: ViewBag.Message = "Error occurred while changing password.";
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "New password not be same as current password");
+                        case 1: ViewBag.Message = "Password changed successfully";
+                            break;
+                        case -1: ViewBag.Message = "User is not valid.";
+                            break;
+                        case -2: ViewBag.Message = "Error occurred while changing password.";
+                            break;
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Current password does not match with our record. Please enter correct password");
+                    ModelState.AddModelError("", "New password not be same as current password");
                 }
+                //if (oUser.CheckValidPassword(oUser.User_ID,oUser.Password))
+                //{
+                    
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "Current password does not match with our record. Please enter correct password");
+                //}
             }
             return View();
         }
@@ -94,31 +97,59 @@ namespace MVC_BMEApplication.Controllers
             List<Models.User> lstUsers = null;
             if (ModelState.IsValid)
             {
-                lstUsers= oUser.GetUserInformation(UserID);
+                lstUsers = oUser.GetUserInformation(UserID, "ONE");
                 if (lstUsers!=null&&lstUsers.Count>0)
                 {
                     oUser = lstUsers[0]; 
                 }
+                ViewBag.RoleList = new SelectList(GetAllRoles(), "RoleID", "RoleName");
             }
-            ViewBag.RoleList = new SelectList(GetAllRoles(), "RoleID", "RoleName");
+            ViewBag.UserID = UserID;
             return View(oUser);
         }
 
         [HttpPost]
         public ActionResult ViewProfile(Models.User oUser)
         {
+            string sTask = string.Empty;
             if (ModelState.IsValid)
             {
-                if (oUser.InsertUpdateDeleteUser(oUser, "Edit")==2)
+                int nStatus;
+                if (oUser.MiddleName == null)
                 {
-                    ViewBag.Message = "User profile updated successfully";
+                    oUser.MiddleName = "";
+                }
+                if (oUser.User_ID==0)
+                {
+                    nStatus = oUser.InsertUpdateDeleteUser(oUser, "NEW");
                 }
                 else
                 {
-                    ModelState.AddModelError("","Error in user profile update");
+                    nStatus = oUser.InsertUpdateDeleteUser(oUser, "EDIT");
                 }
+                switch (nStatus)
+                {
+                    case -1: ViewBag.Message = "User already exists";
+                        break;
+                    case 0: ViewBag.Message = "User registerd successfully";
+                        break;
+                    case 1: ViewBag.Message = "Error";
+                        break;
+                    case 2: ViewBag.Message = "User profile updated successfully";
+                        break;
+                    case 3: ViewBag.Message = "User deleted successfully";
+                        break;
+                }
+                //if (oUser.InsertUpdateDeleteUser(oUser, "sTask") == 2)
+                //{
+                //    ViewBag.Message = "User profile updated successfully";
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("","Error in user profile update");
+                //}
+                ViewBag.RoleList = new SelectList(GetAllRoles(), "RoleID", "RoleName");
             }
-            ViewBag.RoleList = new SelectList(GetAllRoles(), "RoleID", "RoleName");
             return View(oUser);
         }
 
@@ -128,7 +159,7 @@ namespace MVC_BMEApplication.Controllers
             if (ModelState.IsValid)
             {
                 Models.Role oRole = new Models.Role();
-                lstRoles = oRole.GetAllRoles();
+                lstRoles = oRole.GetAllRoles(0,"ALL");
             }
             return lstRoles;
         }
@@ -170,7 +201,7 @@ namespace MVC_BMEApplication.Controllers
             List<Models.User> lstUsers = null;
             if (ModelState.IsValid)
             {
-                lstUsers = oUser.GetUserInformation(0);
+                lstUsers = oUser.GetUserInformation(0,"ALL");
             }
             ViewBag.UserList = lstUsers;
             return View();

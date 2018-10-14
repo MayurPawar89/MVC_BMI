@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Manage User";
+﻿
+@{
+    ViewBag.Title = "Manage Aircraft";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -12,26 +13,27 @@
         </div>
     </div>
     <div class="card-body">
-        <a href="@Url.Action("ViewProfile", "Account", new { UserID=0})" class="btn btn-info cyan"><i class="fa fa-plus left" aria-hidden="true"></i> Add New User</a>
+        <a href="@Url.Action("ViewAircraft", "Home", new { nAircraftID = 0 })" class="btn btn-info cyan"><i class="fa fa-plus left" aria-hidden="true"></i> Add New User</a>
         <div class="table-responsive">
             <table class="table table table-hover table-checkable order-column full-width dataTable no-footer" id="example">
                 <thead>
                     <tr>
-                        <th>User Name</th>
-                        <th>Email ID</th>
-                        <th>Role</th>
+                        <th>SR.NO.</th>
+                        @*<th>Aircraft Type</th>*@
+                        <th>Aircraft Code</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in ViewBag.UserList)
+                    @foreach (var item in ViewBag.AircraftList)
                     {
                         <tr>
-                            <td>@item.UserName </td>
-                            <td>@item.EmailID </td>
-                            <td>@item.Role_Name</td>
+                            <td>@item.SRNO</td>
+                            @*<td>@item.AircraftTypeID </td>*@
+                            <td>@item.AircraftType </td>
+                            <td>@item.AircraftCode </td>
                             <td>
-                                <a href="@Url.Action("ViewProfile", "Account", new { UserID = item.User_ID })" class="btn btn-tbl-edit">
+                                <a href="@Url.Action("ViewAircraft", "Home", new { nAircraftID = item.AircraftTypeID })" class="btn btn-tbl-edit">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                                 <a href="#" class="btn btn-tbl-delete">
@@ -55,3 +57,4 @@
 
     </script>
 }
+

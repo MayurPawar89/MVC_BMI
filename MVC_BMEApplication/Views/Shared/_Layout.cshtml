@@ -10,348 +10,217 @@
 
 </head>
 <body>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>*@
     <div class="row col-md-12">
-    <header>
-        <div class="top-header">
-            <div class="container">
-                <ul class="nav navbar-nav">
-                    <div class="page-logo">
-                        <a href="index.html">
-                            <!--<img alt="" src="assets/img/logo.png">-->
-                            <span class="logo-default">Engeniuspark</span>
-                        </a>
-                    </div>
-                    <li class="dropdown dropdown-extended dropdown-notification">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <i class="fa fa-bell" aria-hidden="true"></i>
-                            <span class="notify"></span>
-                            <span class="heartbeat"></span>
-                        </a>
-                        <ul class="dropdown-menu mailbox wow zoomIn">
-                            <li class="external">
-                                <h3>Notifications</h3>
-                                <span class="notification-label purple-bgcolor">New 1</span>
-                            </li>
-                            <li>
-                                <div class="message-center">
-                                    <ul class="small-slimscroll-style" data-handle-color="#637283">
-                                        <li>
-                                            <a href="#">
-                                                <span class="btn-floating btn-large red"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                <span class="mail-contnet">
-                                                    <h5>Launch Admin</h5>
-                                                    <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="btn-floating btn-large red"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                <span class="mail-contnet">
-                                                    <h5>Launch Admin</h5>
-                                                    <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="btn-floating btn-large red"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                <span class="mail-contnet">
-                                                    <h5>Launch </h5>
-                                                    <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="btn-floating btn-large red"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                <span class="mail-contnet">
-                                                    <h5> Admin</h5>
-                                                    <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="dropdown-menu-footer">
-                                    <a href="javascript:void(0)"> All notifications </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- start notification dropdown -->
-                    <li class="dropdown dropdown-extended dropdown-notification">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <i class="fa fa-comments" aria-hidden="true"></i>
-                            <span class="notify"></span>
-                            <span class="heartbeat"></span>
-                        </a>
-                        <ul class="dropdown-menu mailbox wow zoomIn">
-                            <li class="external">
-                                <h3>You have 4 new message</h3>
-                            </li>
-                            <li>
-                                <div class="message-center">
-                                    <ul class="small-slimscroll-style" data-handle-color="#637283">
-                                        <li>
-                                            <a href="#">
-                                                <span class="user-img">
-                                                    <img src="images/1.jpg" alt="user" class="img-circle">
-                                                    <span class="profile-status online pull-right"></span>
-                                                </span>
-                                                <span class="mail-contnet">
-                                                    <h5>Chris Evans</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:30 AM</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="user-img">
-                                                    <img src="images/1.jpg" alt="user" class="img-circle">
-                                                    <span class="profile-status busy pull-right"></span>
-                                                </span>
-                                                <span class="mail-contnet">
-                                                    <h5>Chris Evans</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:30 AM</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="user-img">
-                                                    <img src="images/1.jpg" alt="user" class="img-circle">
-                                                    <span class="profile-status busy pull-right"></span>
-                                                </span>
-                                                <span class="mail-contnet">
-                                                    <h5>Chris Evans</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:30 AM</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span class="user-img">
-                                                    <img src="images/1.jpg" alt="user" class="img-circle">
-                                                    <span class="profile-status busy pull-right"></span>
-                                                </span>
-                                                <span class="mail-contnet">
-                                                    <h5>Chris Evans</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:30 AM</span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="dropdown-menu-footer">
-                                    <a href="javascript:void(0)"> See all e-Mails</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="search-box">
-                            <input class="s-box" type="text" name="search" placeholder="Type keyword">
-                            <a class="s-btn" href="">
-                                <i class="fa fa-search" aria-hidden="true"></i>
+        <header>
+            <div class="top-header">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <div class="page-logo">
+                            <a href="@Url.Action("Dashboard", "Home")">
+                                <span class="logo-default">Engeniuspark</span>
                             </a>
                         </div>
-                    </li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-                @*<ul class="nav navbar-nav pull-right">
-                    <li class="dropdown dropdown-user">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="false">
-                            <img src="images/2.jpg" alt="user" class="profile-pic">
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-default dropdown-content wow zoomIn">
-                            <li>
-                                <div class="dw-user-box">
-                                    <div class="u-img"><img src="images/2.jpg" alt="user"></div>
-                                    <div class="u-text">
-                                        <h4>Steve Harvey</h4>
-                                        <p>steve@gmail.com</p>
-                                        <a class="btn btn-info cyan white-text btn-small">View Profile</a>
+                        <li class="dropdown dropdown-extended dropdown-notification">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="fa fa-bell" aria-hidden="true"></i>
+                                <span class="notify"></span>
+                                <span class="heartbeat"></span>
+                            </a>
+                            <ul class="dropdown-menu mailbox wow zoomIn">
+                                <li class="external">
+                                    <h3>Notifications</h3>
+                                    <span class="notification-label purple-bgcolor">New 1</span>
+                                </li>
+                                <li>
+                                    <div class="message-center">
+                                        <ul class="small-slimscroll-style" data-handle-color="#637283">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="btn-floating btn-large red"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    <span class="mail-contnet">
+                                                        <h5>Launch Admin</h5>
+                                                        <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="btn-floating btn-large red"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    <span class="mail-contnet">
+                                                        <h5>Launch Admin</h5>
+                                                        <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="btn-floating btn-large red"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    <span class="mail-contnet">
+                                                        <h5>Launch </h5>
+                                                        <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="btn-floating btn-large red"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    <span class="mail-contnet">
+                                                        <h5> Admin</h5>
+                                                        <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="company_profile.php">
-                                    <i class="fa fa-user-circle" aria-hidden="true"></i> Company Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="manage_users.php">
-                                    <i class="fa fa-user"></i> Manage Users
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-pencil"></i> Change Password
-                                </a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-cogs"></i> Settings
-                                </a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a href="index.php">
-                                    <i class="fa fa-sign-out"></i> Log Out
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>*@
-            </div>
-        </div>
-        <div class="bottom-header">
-            <div class="container">
-                <div class="menu">
-                    <label for="tm" id="toggle-menu">Menu <span class="drop-icon">▾</span></label>
-                    <input type="checkbox" id="tm">
-                    <ul class="main-menu cf">
-                        <li><a href="dashboard.php"> <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
-                        <li><a href="manage_aircraft.php"> <i class="fa fa-tachometer" aria-hidden="true"></i> Aircraft Master</a></li>
-                        <li><a href="manage_airline.php"> <i class="fa fa-tachometer" aria-hidden="true"></i> Airline Master</a></li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-tag" aria-hidden="true"></i> BME Data
-                                <span class="drop-icon">▾</span>
-                                <label title="Toggle Drop-down" class="drop-icon" for="sm1">▾</label>
+                                </li>
+                                <li>
+                                    <div class="dropdown-menu-footer">
+                                        <a href="javascript:void(0)"> All notifications </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- start notification dropdown -->
+                        <li class="dropdown dropdown-extended dropdown-notification">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="fa fa-comments" aria-hidden="true"></i>
+                                <span class="notify"></span>
+                                <span class="heartbeat"></span>
                             </a>
-                            <input type="checkbox" id="sm1">
-                            <ul class="sub-menu">
-                                <li><a href="view_bme_data.php">View BME Data</a></li>
-                                <li><a href="upload_bme_data.php">Upload BME Data</a></li>
-                                <li><a href="unmatched_bme_data.php">Unmatched BME Data</a></li>
+                            <ul class="dropdown-menu mailbox wow zoomIn">
+                                <li class="external">
+                                    <h3>You have 4 new message</h3>
+                                </li>
+                                <li>
+                                    <div class="message-center">
+                                        <ul class="small-slimscroll-style" data-handle-color="#637283">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="user-img">
+                                                        <img src="images/1.jpg" alt="user" class="img-circle">
+                                                        <span class="profile-status online pull-right"></span>
+                                                    </span>
+                                                    <span class="mail-contnet">
+                                                        <h5>Chris Evans</h5>
+                                                        <span class="mail-desc">Just see the my admin!</span>
+                                                        <span class="time">9:30 AM</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="user-img">
+                                                        <img src="images/1.jpg" alt="user" class="img-circle">
+                                                        <span class="profile-status busy pull-right"></span>
+                                                    </span>
+                                                    <span class="mail-contnet">
+                                                        <h5>Chris Evans</h5>
+                                                        <span class="mail-desc">Just see the my admin!</span>
+                                                        <span class="time">9:30 AM</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="user-img">
+                                                        <img src="images/1.jpg" alt="user" class="img-circle">
+                                                        <span class="profile-status busy pull-right"></span>
+                                                    </span>
+                                                    <span class="mail-contnet">
+                                                        <h5>Chris Evans</h5>
+                                                        <span class="mail-desc">Just see the my admin!</span>
+                                                        <span class="time">9:30 AM</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="user-img">
+                                                        <img src="images/1.jpg" alt="user" class="img-circle">
+                                                        <span class="profile-status busy pull-right"></span>
+                                                    </span>
+                                                    <span class="mail-contnet">
+                                                        <h5>Chris Evans</h5>
+                                                        <span class="mail-desc">Just see the my admin!</span>
+                                                        <span class="time">9:30 AM</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown-menu-footer">
+                                        <a href="javascript:void(0)"> See all e-Mails</a>
+                                    </div>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-tag" aria-hidden="true"></i> Stand Data
-                                <span class="drop-icon">▾</span>
-                                <label title="Toggle Drop-down" class="drop-icon" for="sm2">▾</label>
-                            </a>
-                            <input type="checkbox" id="sm2">
-                            <ul class="sub-menu">
-                                <li><a href="view_stand_data.php">View Stand Data</a></li>
-                                <li><a href="upload_stand_data.php">Upload Stand Data</a></li>
-                                <li><a href="unmatched_stand_data.php">Unmatched Stand Data</a></li>
-                            </ul>
+                            <div class="search-box">
+                                <input class="s-box" type="text" name="search" placeholder="Type keyword">
+                                <a class="s-btn" href="">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </a>
+                            </div>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-tag" aria-hidden="true"></i> Association (Billdable Data)
-                                <span class="drop-icon">▾</span>
-                                <label title="Toggle Drop-down" class="drop-icon" for="sm3">▾</label>
-                            </a>
-                            <input type="checkbox" id="sm3">
-                            <ul class="sub-menu">
-                                <li><a href="view_association_data.php">View Association Data</a></li>
-                                <li><a href="new_association_data.php">New Association Data</a></li>
-                                <li><a href="upload_association_data.php">Upload Association Data</a></li>
-                            </ul>
-                        </li>
-
-                        <!--<li>
-                           <a href="#"> <i class="fa fa-tag" aria-hidden="true"></i> Apps
-                           <span class="drop-icon">▾</span>
-                           <label title="Toggle Drop-down" class="drop-icon" for="sm0">▾</label>
-                           </a>
-                           <input type="checkbox" id="sm0">
-                           <ul class="sub-menu two-column">
-                              <li><a href="airline_details.php">Airline Details</a></li>
-                              <li><a href="#">Item 1.2</a></li>
-                              <li><a href="#">Item 1.3</a></li>
-                              <li><a href="#">Item 1.4</a></li>
-                           </ul>
-                        </li> -->
-                        <!-- <li>
-                           <a href="#"> <i class="fa fa-tag" aria-hidden="true"></i> Forms
-                           <span class="drop-icon">▾</span>
-                           <label title="Toggle Drop-down" class="drop-icon" for="sm3">▾</label>
-                           </a>
-                           <input type="checkbox" id="sm3">
-                           <ul class="sub-menu">
-                              <li>
-                                 <a href="">3.1
-                                 <span class="drop-icon">▸</span>
-                                 <label title="Toggle Drop-down" class="drop-icon" for="sm4">▾</label>
-                                 </a>
-                                 <input type="checkbox" id="sm4">
-                                 <ul class="sub-menu">
-                                    <li><a href="">3.1.1</a></li>
-                                    <li><a href="">3.1.2</a></li>
-                                    <li><a href="">3.1.3</a></li>
-                                    <li><a href="">3.1.4</a></li>
-                                 </ul>
-                              </li>
-                              <li>
-                                 <a href="">3.2
-                                 <span class="drop-icon">▸</span>
-                                 <label title="Toggle Drop-down" class="drop-icon" for="sm5">▾</label>
-                                 </a>
-                                 <input type="checkbox" id="sm5">
-                                 </a>
-                                 <ul class="sub-menu">
-                                    <li><a href="">3.2.1</a></li>
-                                    <li><a href="">3.2.2</a></li>
-                                    <li><a href="">3.2.3</a></li>
-                                 </ul>
-                              </li>
-                              <li>
-                                 <a href="">3.3
-                                 <span class="drop-icon">▸</span>
-                                 <label title="Toggle Drop-down" class="drop-icon" for="sm6">▾</label>
-                                 </a>
-                                 <input type="checkbox" id="sm6">
-                                 </a>
-                                 <ul class="sub-menu">
-                                    <li><a href="">3.3.1</a></li>
-                                    <li><a href="">3.3.2</a></li>
-                                    <li><a href="">3.2.2</a></li>
-                                    <li><a href="">3.3.4</a></li>
-                                    <li><a href="">3.3.5</a></li>
-                                 </ul>
-                              </li>
-                           </ul>
-                        </li> -->
                     </ul>
+                    @Html.Partial("_LoginPartial")
                 </div>
             </div>
-        </div>
-    </header>
+            <div class="bottom-header">
+                <div class="container">
+                    <div class="menu">
+                        <label for="tm" id="toggle-menu">Menu <span class="drop-icon">▾</span></label>
+                        <input type="checkbox" id="tm">
+                        <ul class="main-menu cf">
+                            <li id="liDashboard" style="display: @ViewData["Dashboard"]"><a href="@Url.Action("Dashboard", "Home")"> <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+                            <li id="liManageAircraft" style="display: @ViewData["ManageAircraft"]"><a href="@Url.Action("ManageAircraft", "Home", new { nAircraftID=0})"> <i class="fa fa-tachometer" aria-hidden="true"></i> Aircraft Master</a></li>
+                            <li id="liManageAirline" style="display: @ViewData["ManageAirline"]"><a href="@Url.Action("ManageAirline", "Home")"> <i class="fa fa-tachometer" aria-hidden="true"></i> Airline Master</a></li>
+                            <li id="liBMEData" style="display: @ViewData["BMEData"]">
+                                <a href="#">
+                                    <i class="fa fa-tag" aria-hidden="true"></i> BME Data
+                                    <span class="drop-icon">▾</span>
+                                    <label title="Toggle Drop-down" class="drop-icon" for="sm1">▾</label>
+                                </a>
+                                <input type="checkbox" id="sm1">
+                                <ul class="sub-menu">
+                                    <li><a href="@Url.Action("ViewBMEData", "Home")">View BME Data</a></li>
+                                    <li><a href="@Url.Action("UploadBMEData", "Home")">Upload BME Data</a></li>
+                                    <li><a href="@Url.Action("UnmatchedBMEData", "Home")">Unmatched BME Data</a></li>
+                                </ul>
+                            </li>
+                            <li id="liStandData" style="display: @ViewData["StandData"]">
+                                <a href="#">
+                                    <i class="fa fa-tag" aria-hidden="true"></i> Stand Data
+                                    <span class="drop-icon">▾</span>
+                                    <label title="Toggle Drop-down" class="drop-icon" for="sm2">▾</label>
+                                </a>
+                                <input type="checkbox" id="sm2">
+                                <ul class="sub-menu">
+                                    <li><a href="@Url.Action("ViewStandData", "Home")">View Stand Data</a></li>
+                                    <li><a href="@Url.Action("UploadStandData", "Home")">Upload Stand Data</a></li>
+                                    <li><a href="@Url.Action("UnmatchedStandData", "Home")">Unmatched Stand Data</a></li>
+                                </ul>
+                            </li>
+                            <li id="liAssociationData" style="display: @ViewData["AssociationData"]">
+                                <a href="#">
+                                    <i class="fa fa-tag" aria-hidden="true"></i> Association (Billdable Data)
+                                    <span class="drop-icon">▾</span>
+                                    <label title="Toggle Drop-down" class="drop-icon" for="sm3">▾</label>
+                                </a>
+                                <input type="checkbox" id="sm3">
+                                <ul class="sub-menu">
+                                    <li><a href="@Url.Action("ViewAssociationData", "Home")">View Association Data</a></li>
+                                    <li><a href="@Url.Action("NewAssociationData", "Home")">New Association Data</a></li>
+                                    <li><a href="@Url.Action("UploadAssociationData", "Home")">Upload Association Data</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
     </div>
     <div class="row col-md-12">
         <div class="page-container">
@@ -365,7 +234,7 @@
                                 </div>
                                 <ol class="breadcrumb page-breadcrumb pull-right">
                                     <li>
-                                        <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="#">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                        <i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="@Url.Action("Dashboard", "Home")">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                                     </li>
                                     <li class="active">@ViewBag.Title</li>
                                 </ol>
@@ -378,10 +247,6 @@
                         @RenderBody()
                     </div>
                 </div>
-                @*<hr />
-                    <footer>
-                        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                    </footer>*@
             </div>
         </div>
     </div>
@@ -400,6 +265,11 @@
                 });
                 table.buttons().container()
                 .appendTo('#example_wrapper .col-sm-6:eq(0)');
+                table.on('order.dt search.dt', function () {
+                    table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw()
             });
 
             var textarea = document.querySelector('textarea');
@@ -538,7 +408,7 @@
                 }
             }
         </script>
-        }
     }
+    
 </body>
 </html>

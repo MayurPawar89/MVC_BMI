@@ -138,6 +138,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\ViewActionFilter.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -146,6 +147,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Aircraft.cs" />
+    <Compile Include="Models\Airline.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\DataAccess.cs" />
     <Compile Include="Models\Role.cs" />
@@ -174,6 +177,19 @@
     <Content Include="Views\Account\CompanyProfile.cshtml" />
     <Content Include="Views\Account\ManageUser.cshtml" />
     <Content Include="Views\Account\Settings.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\ManageAircraft.cshtml" />
+    <Content Include="Views\Home\ManageAirline.cshtml" />
+    <Content Include="Views\Home\ViewBMEData.cshtml" />
+    <Content Include="Views\Home\UploadBMEData.cshtml" />
+    <Content Include="Views\Home\UnmatchedBMEData.cshtml" />
+    <Content Include="Views\Home\ViewStandData.cshtml" />
+    <Content Include="Views\Home\UploadStandData.cshtml" />
+    <Content Include="Views\Home\UnmatchedStandData.cshtml" />
+    <Content Include="Views\Home\ViewAssociationData.cshtml" />
+    <Content Include="Views\Home\UploadAssociationData.cshtml" />
+    <Content Include="Views\Home\NewAssociationData.cshtml" />
+    <Content Include="Views\Home\ViewAircraft.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
