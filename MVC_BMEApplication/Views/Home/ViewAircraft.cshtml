@@ -45,8 +45,9 @@
 @if (ViewBag.Message != null)
 {
     <script>
-        window.onload = function () {
-            alert('@ViewBag.Message');
+    window.onload = function () {
+        alert('@ViewBag.Message');
+            window.location.href = "@Url.Action("ManageAircraft", "Home")";
         }
     </script>
 }

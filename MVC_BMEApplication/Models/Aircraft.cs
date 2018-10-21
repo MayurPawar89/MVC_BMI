@@ -88,6 +88,39 @@ namespace MVC_BMEApplication.Models
             return nResult;
         }
 
+        public int DeleteAircraft(Int64 nAircraftTypeID, string sTask)
+        {
+            int nResult = 0;
+            DataTable _dt = null;
+            DBParameters _DBParameters = new DBParameters();
+            DataAccess _DataAccess = new DataAccess();
+            try
+            {
+                _DataAccess.OpenConnection(false);
+                _DBParameters.clear();
+                _DBParameters.Add("@TASK", sTask, ParameterDirection.Input, SqlDbType.VarChar);
+                //_DBParameters.Add("@Company_ID", oCompany.Company_ID, ParameterDirection.Input, SqlDbType.BigInt);
+                _DBParameters.Add("@AircraftType_ID", nAircraftTypeID, ParameterDirection.Input, SqlDbType.BigInt);
+                _DBParameters.Add("@AircraftType", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@AircraftCode", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DataAccess.Retrive("SP_Create_Update_Aircraft_Code_Master", _DBParameters, out _dt);
+
+                _DataAccess.CloseConnection(false);
+                if (_dt != null && _dt.Rows.Count > 0)
+                {
+                    nResult = Convert.ToInt32(_dt.Rows[0][0]);
+                }
+            }
+            catch (Exception)
+            {
+                if (_DataAccess != null) { _DataAccess.RollBack(); _DataAccess.CloseConnection(false); }
+            }
+            finally
+            {
+                if (_DBParameters != null) { _DBParameters.Dispose(); }
+            }
+            return nResult;
+        }
         public List<Aircraft> GetAircraftInformation(Int64 nAircraftType_ID, string sTask)
         {
             DataTable _dt = null;

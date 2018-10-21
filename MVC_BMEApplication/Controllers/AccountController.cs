@@ -152,7 +152,30 @@ namespace MVC_BMEApplication.Controllers
             }
             return View(oUser);
         }
-
+        public ActionResult Delete(Int64 UserID)
+        {
+            Models.User oUser = new Models.User();
+            if (ModelState.IsValid)
+            {
+                int nStatus = 0;
+                if (UserID != 0)
+                {
+                    nStatus = oUser.DeleteUser(UserID, "DELETE");
+                }
+                switch (nStatus)
+                {
+                    case -1: ViewBag.Message = "User information already exists";
+                        break;
+                    case 1: ViewBag.Message = "Error";
+                        break;
+                    case 3: ViewBag.Message = "User information deleted successfully";
+                        break;
+                }
+            }
+            ViewBag.Action = "ManageUser";
+            ViewBag.ControllerName = "Account";
+            return View();
+        }
         private List<Models.Role> GetAllRoles()
         {
             List<Models.Role> lstRoles = null;

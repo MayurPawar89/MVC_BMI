@@ -186,6 +186,51 @@ namespace MVC_BMEApplication.Models
             return nResult;
         }
 
+        public int DeleteUser(Int64 nUserID, string sTask)
+        {
+            int nResult=-2;
+            DataTable _dt = null;
+            DBParameters _DBParameters = new DBParameters();
+            DataAccess _DataAccess = new DataAccess();
+            try
+            {
+                _DataAccess.OpenConnection(false);
+                _DBParameters.clear();
+                _DBParameters.Add("@TASK", sTask, ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@User_ID", nUserID, ParameterDirection.Input, SqlDbType.BigInt);
+                _DBParameters.Add("@Role_ID", 0, ParameterDirection.Input, SqlDbType.BigInt);
+                _DBParameters.Add("@UserName", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@Password", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@LastName", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@FirstName", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@MiddelName", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@MobileNo1", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@MobileNo2", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@DOB", DateTime.MinValue.Date, ParameterDirection.Input, SqlDbType.Date);
+                _DBParameters.Add("@Gender", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@EmailID", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@Address", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@ActivationStatus", "", ParameterDirection.Input, SqlDbType.VarChar);
+                _DBParameters.Add("@Created_By_User_ID", 0, ParameterDirection.Input, SqlDbType.BigInt);
+                _DataAccess.Retrive("SP_Create_Update_User", _DBParameters, out _dt);
+
+                _DataAccess.CloseConnection(false);
+                if (_dt != null && _dt.Rows.Count > 0)
+                {
+                    nResult = Convert.ToInt32(_dt.Rows[0][0]);
+                }
+            }
+            catch (Exception)
+            {
+                if (_DataAccess != null) { _DataAccess.RollBack(); _DataAccess.CloseConnection(false); }
+            }
+            finally
+            {
+                if (_DBParameters != null) { _DBParameters.Dispose(); }
+            }
+            return nResult;
+        }
+
         public List<User> GetUserInformation(Int64 nUserID, string sTask)
         {
             DataTable _dt = null;

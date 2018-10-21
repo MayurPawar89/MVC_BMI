@@ -1,8 +1,106 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Manage Airline";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ManageAirline</h2>
+<div class="card card-box">
+    <div class="card-head">
+        <div class="tools">
+            <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+            <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+            <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+        </div>
+    </div>
+    <div class="card-body">
+        <a href="@Url.Action("ViewAirline", "Home", new { nAirlineID = 0 })" class="btn btn-info cyan"><i class="fa fa-plus left" aria-hidden="true"></i> Add New Airline</a>
+        <div class="table-responsive">
+            <table class="table table table-hover table-checkable order-column full-width dataTable no-footer" id="example">
+                <thead>
+                    <tr>
+                        <th>SR.NO.</th>
+                        <th>Airline Code</th>
+                        <th>Airline Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.AirlineList)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@item.AIRLINE_CODE </td>
+                            <td>@item.AIRLINE_NAME </td>
+                            <td>
+                                <a href="@Url.Action("ViewAirline", "Home", new { nAirlineID = item.AIRLINE_CODE_ID })" class="btn btn-tbl-edit">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", "Home", new { nID = item.AIRLINE_CODE_ID, sType = "Airline", sActionName = "ManageAirline", sControllerName = "Home" })" class="btn btn-tbl-delete">
+                                    <i class="fa fa-trash-o "></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            $('#example tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
+            var table = $('#example').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf']
+            });
+
+            table.buttons().container()
+            .appendTo('#example_wrapper .col-sm-6:eq(0)');
+            table.on('order.dt search.dt', function () {
+                table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+            // Apply the search
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+
+        });
+
+
+
+    </script>
+    @if (@ViewBag.Message != null)
+    {
+        <script>
+            window.onload = function () {
+                alert(@ViewBag.Message);
+            }
+        </script>
+    }
+}
+
+
+
 

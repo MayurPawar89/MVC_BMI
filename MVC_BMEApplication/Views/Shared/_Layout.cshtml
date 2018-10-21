@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/AppCss")
     @Scripts.Render("~/bundles/modernizr")
@@ -252,6 +252,8 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/moment")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/AppJs")
     @RenderSection("scripts", required: false)
     @section sctipts
@@ -263,6 +265,7 @@
                     lengthChange: false,
                     buttons: ['copy', 'excel', 'pdf']
                 });
+                
                 table.buttons().container()
                 .appendTo('#example_wrapper .col-sm-6:eq(0)');
                 table.on('order.dt search.dt', function () {
@@ -270,143 +273,37 @@
                         cell.innerHTML = i + 1;
                     });
                 }).draw()
+                $('#example thead th').each(function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+                });
+                // Apply the search
+                table.columns().every(function () {
+                    var that = this;
+
+                    $('input', this.footer()).on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
             });
 
-            var textarea = document.querySelector('textarea');
+            //var textarea = document.querySelector('textarea');
 
-            textarea.addEventListener('keydown', autosize);
+            //textarea.addEventListener('keydown', autosize);
 
-            function autosize() {
-                var el = this;
-                setTimeout(function () {
-                    el.style.cssText = 'height:auto; padding:0';
-                    // for box-sizing other than "content-box" use:
-                    // el.style.cssText = '-moz-box-sizing:content-box';
-                    el.style.cssText = 'height:' + el.scrollHeight + 'px';
-                }, 0);
-            }
-
-
-            function copy_all1() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.pca_n_inter_inter.value = document.airline_details.fgp_n_inter_inter.value;
-                }
-                else {
-                    document.airline_details.pca_n_inter_inter.value = "";
-                }
-            }
-            function copy_all2() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.fgp_n_dom_dom.value = document.airline_details.pca_n_inter_inter.value;
-                }
-                else {
-                    document.airline_details.fgp_n_dom_dom.value = "";
-                }
-            }
-            function copy_all3() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.pca_n_dom_dom.value = document.airline_details.fgp_n_dom_dom.value;
-                }
-                else {
-                    document.airline_details.pca_n_dom_dom.value = "";
-                }
-            }
-            function copy_all4() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.fgp_n_inter_dom.value = document.airline_details.pca_n_dom_dom.value;
-                }
-                else {
-                    document.airline_details.fgp_n_inter_dom.value = "";
-                }
-            }
-            function copy_all5() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.pca_n_inter_dom.value = document.airline_details.fgp_n_inter_dom.value;
-                }
-                else {
-                    document.airline_details.pca_n_inter_dom.value = "";
-                }
-            }
-            function copy_all6() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.fgp_n_dom_inter.value = document.airline_details.pca_n_inter_dom.value;
-                }
-                else {
-                    document.airline_details.fgp_n_dom_inter.value = "";
-                }
-            }
-            function copy_all7() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.pca_n_dom_inter.value = document.airline_details.fgp_n_dom_inter.value;
-                }
-                else {
-                    document.airline_details.pca_n_dom_inter.value = "";
-                }
-            }
-            function copy_all8() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.fgp_t_inter_inter.value = document.airline_details.pca_n_dom_inter.value;
-                }
-                else {
-                    document.airline_details.fgp_t_inter_inter.value = "";
-                }
-            }
-            function copy_all9() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.pca_t_inter_inter.value = document.airline_details.fgp_t_inter_inter.value;
-                }
-                else {
-                    document.airline_details.pca_t_inter_inter.value = "";
-                }
-            }
-            function copy_all10() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.fgp_t_dom_dom.value = document.airline_details.pca_t_inter_inter.value;
-                }
-                else {
-                    document.airline_details.fgp_t_dom_dom.value = "";
-                }
-            }
-            function copy_all11() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.pca_t_dom_dom.value = document.airline_details.fgp_t_dom_dom.value;
-                }
-                else {
-                    document.airline_details.pca_t_dom_dom.value = "";
-                }
-            }
-            function copy_all12() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.fgp_t_inter_dom.value = document.airline_details.pca_t_dom_dom.value;
-                }
-                else {
-                    document.airline_details.fgp_t_inter_dom.value = "";
-                }
-            }
-            function copy_all13() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.pca_t_inter_dom.value = document.airline_details.fgp_t_inter_dom.value;
-                }
-                else {
-                    document.airline_details.pca_t_inter_dom.value = "";
-                }
-            }
-            function copy_all14() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.fgp_t_dom_inter.value = document.airline_details.pca_t_inter_dom.value;
-                }
-                else {
-                    document.airline_details.fgp_t_dom_inter.value = "";
-                }
-            }
-            function copy_all15() {
-                if (document.airline_details.same1.checked) {
-                    document.airline_details.pca_t_dom_inter.value = document.airline_details.fgp_t_dom_inter.value;
-                }
-                else {
-                    document.airline_details.pca_t_dom_inter.value = "";
-                }
-            }
+            //function autosize() {
+            //    var el = this;
+            //    setTimeout(function () {
+            //        el.style.cssText = 'height:auto; padding:0';
+            //        // for box-sizing other than "content-box" use:
+            //        // el.style.cssText = '-moz-box-sizing:content-box';
+            //        el.style.cssText = 'height:' + el.scrollHeight + 'px';
+            //    }, 0);
+            //}
         </script>
     }
     

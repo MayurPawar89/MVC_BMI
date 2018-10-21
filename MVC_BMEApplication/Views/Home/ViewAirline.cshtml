@@ -1,0 +1,486 @@
+﻿@model MVC_BMEApplication.Models.Airline
+@{
+    ViewBag.Title = "View Airline Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("ViewAirline", "Home", FormMethod.Post, new { @name="airlineDetails", @id="airlineDetails" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.AIRLINE_CODE_ID)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-box">
+                <div class="card-head">
+                    <div class="tools">
+                        <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+                        <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+                        <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+                    </div>
+                </div>
+                <div class="card-body" id="bar-parent">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.AIRLINE_CODE, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.AIRLINE_CODE, new { @class = "form-control", @placeholder = "Airline Code" })
+                                @Html.ValidationMessageFor(model => model.AIRLINE_CODE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.AIRLINE_NAME, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.AIRLINE_NAME, new { @class = "form-control", @placeholder = "Airline Name" })
+                                @Html.ValidationMessageFor(model => model.AIRLINE_NAME, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.DOM_MIN_USAGE, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.DOM_MIN_USAGE, new { @class = "form-control", @placeholder = "Domestic Min Usage", maxLength=6 })
+                                @Html.ValidationMessageFor(model => model.DOM_MIN_USAGE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.INT_MIN_USAGE, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.INT_MIN_USAGE, new { @class = "form-control", @placeholder = "International Min Usage", maxLength = 6 })
+                                @Html.ValidationMessageFor(model => model.INT_MIN_USAGE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.DOM_ROUNDINNG_OFF_VALUE, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.RadioButtonFor(model => model.DOM_ROUNDINNG_OFF_VALUE, "true") Yes
+                                @Html.RadioButtonFor(model => model.DOM_ROUNDINNG_OFF_VALUE, "false") No
+                                @*@Html.TextBoxFor(model => model.DOM_ROUNDINNG_OFF_VALUE, new { @class = "form-control", @placeholder = "Dom Rounding off value" })*@
+                                @Html.ValidationMessageFor(model => model.DOM_ROUNDINNG_OFF_VALUE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.INT_ROUNDINNG_OFF_VALUE, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.RadioButtonFor(model => model.INT_ROUNDINNG_OFF_VALUE, "true") Yes
+                                @Html.RadioButtonFor(model => model.INT_ROUNDINNG_OFF_VALUE, "false") No
+                                @*@Html.TextBoxFor(model => model.INT_ROUNDINNG_OFF_VALUE, new { @class = "form-control", @placeholder = "INT Rounding off value" })*@
+                                @Html.ValidationMessageFor(model => model.INT_ROUNDINNG_OFF_VALUE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.SAP_ACCOUNT_CODE, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.SAP_ACCOUNT_CODE, new { @class = "form-control", @placeholder = "Sap Account Code" })
+                                @Html.ValidationMessageFor(model => model.SAP_ACCOUNT_CODE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.TAX_ACCOUNT_CODE, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.TAX_ACCOUNT_CODE, new { @class = "form-control", @placeholder = "Tax Account Code" })
+                                @Html.ValidationMessageFor(model => model.TAX_ACCOUNT_CODE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 form-group">
+                            @Html.LabelFor(model => model.THRESHOLD_LIMIT, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.THRESHOLD_LIMIT, new { @class = "form-control", @placeholder = "Threshold Limit" })
+                                @Html.ValidationMessageFor(model => model.THRESHOLD_LIMIT, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-5 form-group">
+
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row form-group m-t-40">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered custom_table">
+                                    <thead>
+                                        <tr>
+                                            <th class="center">Meter</th>
+                                            <th class="center">Value</th>
+                                            <th class="center">Arrival</th>
+                                            <th class="center">Departure</th>
+                                            <th class="center">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="center">FGP</td>
+                                            <td class="center">Normal</td>
+                                            <td class="center">International</td>
+                                            <td class="center">International</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.FGP_N_ARR_INT_DEP_INT_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">PCA</td>
+                                            <td class="center">Normal</td>
+                                            <td class="center">International</td>
+                                            <td class="center">International</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.PCA_N_ARR_INT_DEP_INT_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same1" type="checkbox" onclick="SameAsAbove(this, FGP_N_ARR_INT_DEP_INT_RATE, PCA_N_ARR_INT_DEP_INT_RATE);">
+                                                        <label for="same1">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">FGP</td>
+                                            <td class="center">Normal</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.FGP_N_ARR_DOM_DEP_DOM_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same2" type="checkbox" onclick="SameAsAbove(this, PCA_N_ARR_INT_DEP_INT_RATE, FGP_N_ARR_DOM_DEP_DOM_RATE);">
+                                                        <label for="same2">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">PCA</td>
+                                            <td class="center">Normal</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.PAC_N_ARR_DOM_DEP_DOM_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same3" type="checkbox" onclick="SameAsAbove(this, FGP_N_ARR_DOM_DEP_DOM_RATE, PAC_N_ARR_DOM_DEP_DOM_RATE);">
+                                                        <label for="same3">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">FGP</td>
+                                            <td class="center">Normal</td>
+                                            <td class="center">International</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.FGP_N_ARR_INT_DEP_DOM_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same4" type="checkbox" onclick="SameAsAbove(this, PAC_N_ARR_DOM_DEP_DOM_RATE, FGP_N_ARR_INT_DEP_DOM_RATE);">
+                                                        <label for="same4">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">PCA</td>
+                                            <td class="center">Normal</td>
+                                            <td class="center">International</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.PCA_N_ARR_INT_DEP_DOM_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same5" type="checkbox" onclick="SameAsAbove(this, FGP_N_ARR_INT_DEP_DOM_RATE, PCA_N_ARR_INT_DEP_DOM_RATE);">
+                                                        <label for="same5">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">FGP</td>
+                                            <td class="center">Normal</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">International</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.FGP_N_ARR_DOM_DEP_INT_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same6" type="checkbox" onclick="SameAsAbove(this, PCA_N_ARR_INT_DEP_DOM_RATE, FGP_N_ARR_DOM_DEP_INT_RATE);">
+                                                        <label for="same6">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">PCA</td>
+                                            <td class="center">Normal</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">International</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.PCA_N_ARR_DOM_DEP_INT_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same7" type="checkbox" onclick="SameAsAbove(this, FGP_N_ARR_DOM_DEP_INT_RATE, PCA_N_ARR_DOM_DEP_INT_RATE);">
+                                                        <label for="same7">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">FGP</td>
+                                            <td class="center">Threshold</td>
+                                            <td class="center">International</td>
+                                            <td class="center">International</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.FGP_T_ARR_INT_DEP_INT_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same8" type="checkbox" onclick="SameAsAbove(this, PCA_N_ARR_DOM_DEP_INT_RATE, FGP_T_ARR_INT_DEP_INT_RATE);">
+                                                        <label for="same8">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">PCA</td>
+                                            <td class="center">Threshold</td>
+                                            <td class="center">International</td>
+                                            <td class="center">International</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.PCA_T_ARR_INT_DEP_INT_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same9" type="checkbox" onclick="SameAsAbove(this, FGP_T_ARR_INT_DEP_INT_RATE, PCA_T_ARR_INT_DEP_INT_RATE);">
+                                                        <label for="same9">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">FGP</td>
+                                            <td class="center">Threshold</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.FGP_T_ARR_DOM_DEP_DOM_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same10" type="checkbox" onclick="SameAsAbove(this, PCA_T_ARR_INT_DEP_INT_RATE, FGP_T_ARR_DOM_DEP_DOM_RATE);">
+                                                        <label for="same10">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">PCA</td>
+                                            <td class="center">Threshold</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.PAC_T_ARR_DOM_DEP_DOM_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same11" type="checkbox" onclick="SameAsAbove(this, FGP_T_ARR_DOM_DEP_DOM_RATE, PAC_T_ARR_DOM_DEP_DOM_RATE);">
+                                                        <label for="same11">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">FGP</td>
+                                            <td class="center">Threshold</td>
+                                            <td class="center">International</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.FGP_T_ARR_INT_DEP_DOM_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same12" type="checkbox" onclick="SameAsAbove(this, PAC_T_ARR_DOM_DEP_DOM_RATE, FGP_T_ARR_INT_DEP_DOM_RATE);">
+                                                        <label for="same12">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">PCA</td>
+                                            <td class="center">Threshold</td>
+                                            <td class="center">International</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.PCA_T_ARR_INT_DEP_DOM_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same13" type="checkbox" onclick="SameAsAbove(this, FGP_T_ARR_INT_DEP_DOM_RATE, PCA_T_ARR_INT_DEP_DOM_RATE);">
+                                                        <label for="same13">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">FGP</td>
+                                            <td class="center">Threshold</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">International</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.FGP_T_ARR_DOM_DEP_INT_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same14" type="checkbox" onclick="SameAsAbove(this, PCA_T_ARR_INT_DEP_DOM_RATE, FGP_T_ARR_DOM_DEP_INT_RATE);">
+                                                        <label for="same14">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">PCA</td>
+                                            <td class="center">Threshold</td>
+                                            <td class="center">Domestic</td>
+                                            <td class="center">International</td>
+                                            <td class="center">
+                                                <div class="left_block">
+                                                    @Html.TextBoxFor(model => model.PCA_T_ARR_DOM_DEP_INT_RATE, new { @class = "form-control input-height", @placeholder = "", maxLength=6  })
+                                                </div>
+                                                <div class="right_block">
+                                                    <div class="checkbox checkbox-icon-black">
+                                                        <input id="same15" type="checkbox" onclick="SameAsAbove(this, FGP_T_ARR_DOM_DEP_INT_RATE, PCA_T_ARR_DOM_DEP_INT_RATE);">
+                                                        <label for="same15">
+                                                            Same as above
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                            <a href="@Url.Action("ManageAirline", "Home")" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+                    <div class="h5 mb-3 font-weight-normal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        window.onload = function () {
+            alert('@ViewBag.Message');
+            window.location.href = "@Url.Action("ManageAirline", "Home")";
+        }
+    </script>
+}
+<script>
+    function SameAsAbove(control,source_id,destination_id)
+    {
+        var str = control.id;
+        var source=source_id.id;
+        var dest=destination_id.id;
+        //if (control.checked) {
+        //    document.airlineDetails.dest.value = document.airlineDetails.source.value;
+        //}
+        switch (str) {
+            case "same1": document.airlineDetails.PCA_N_ARR_INT_DEP_INT_RATE.value = document.airlineDetails.FGP_N_ARR_INT_DEP_INT_RATE.value; break;
+            case "same2": document.airlineDetails.FGP_N_ARR_DOM_DEP_DOM_RATE.value = document.airlineDetails.PCA_N_ARR_INT_DEP_INT_RATE.value; break;
+            case "same3": document.airlineDetails.PAC_N_ARR_DOM_DEP_DOM_RATE.value = document.airlineDetails.FGP_N_ARR_DOM_DEP_DOM_RATE.value; break;
+            case "same4": document.airlineDetails.FGP_N_ARR_INT_DEP_DOM_RATE.value = document.airlineDetails.PAC_N_ARR_DOM_DEP_DOM_RATE.value; break;
+            case "same5": document.airlineDetails.PCA_N_ARR_INT_DEP_DOM_RATE.value = document.airlineDetails.FGP_N_ARR_INT_DEP_DOM_RATE.value; break;
+            case "same6": document.airlineDetails.FGP_N_ARR_DOM_DEP_INT_RATE.value = document.airlineDetails.PCA_N_ARR_INT_DEP_DOM_RATE.value; break;
+            case "same7": document.airlineDetails.PCA_N_ARR_DOM_DEP_INT_RATE.value = document.airlineDetails.FGP_N_ARR_DOM_DEP_INT_RATE.value; break;
+            case "same8": document.airlineDetails.FGP_T_ARR_INT_DEP_INT_RATE.value = document.airlineDetails.PCA_N_ARR_DOM_DEP_INT_RATE.value; break;
+            case "same9": document.airlineDetails.PCA_T_ARR_INT_DEP_INT_RATE.value = document.airlineDetails.FGP_T_ARR_INT_DEP_INT_RATE.value; break;
+            case "same10": document.airlineDetails.FGP_T_ARR_DOM_DEP_DOM_RATE.value = document.airlineDetails.PCA_T_ARR_INT_DEP_INT_RATE.value; break;
+            case "same11": document.airlineDetails.PAC_T_ARR_DOM_DEP_DOM_RATE.value = document.airlineDetails.FGP_T_ARR_DOM_DEP_DOM_RATE.value; break;
+            case "same12": document.airlineDetails.FGP_T_ARR_INT_DEP_DOM_RATE.value = document.airlineDetails.PAC_T_ARR_DOM_DEP_DOM_RATE.value; break;
+            case "same13": document.airlineDetails.PCA_T_ARR_INT_DEP_DOM_RATE.value = document.airlineDetails.FGP_T_ARR_INT_DEP_DOM_RATE.value; break;
+            case "same14": document.airlineDetails.FGP_T_ARR_DOM_DEP_INT_RATE.value = document.airlineDetails.PCA_T_ARR_INT_DEP_DOM_RATE.value; break;
+            case "same15": document.airlineDetails.PCA_T_ARR_DOM_DEP_INT_RATE.value = document.airlineDetails.FGP_T_ARR_DOM_DEP_INT_RATE.value; break;
+            default:
+
+        }
+        //alert('HI');
+    }
+</script>
+
+
+
