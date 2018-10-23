@@ -295,11 +295,36 @@ namespace MVC_BMEApplication.Controllers
         {
             return View();
         }
+        [HttpGet]
         public ActionResult ViewAssociationData()
         {
+            Models.DataFetch oData = new Models.DataFetch();
+            List<Models.AssociationData> lstAssociationData = new List<Models.AssociationData>();
+            if (ModelState.IsValid)
+            {
+                if (oData.CallingView != null && oData.Task != null)
+                {
+                    lstAssociationData = oData.RetriveAssociationData();
+                }
+                oData.FromDate = DateTime.Now.Date;
+                oData.ToDate = DateTime.Now.Date;
+                oData.CallingView = "ViewAssociation";
+                oData.Task = "ALL";
+            }
+            ViewBag.AssociationDataList = lstAssociationData;
+            return View(oData);
+        }
+        [HttpPost]
+        public ActionResult ViewAssociationData(Models.DataFetch oData)
+        {
+            List<Models.AssociationData> lstAssociationData = null;
+            if (ModelState.IsValid)
+            {
+                lstAssociationData = oData.RetriveAssociationData();
+            }
+            ViewBag.AssociationDataList = lstAssociationData;
             return View();
         }
-
         public ActionResult UploadAssociationData()
         {
             return View();

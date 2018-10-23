@@ -201,6 +201,7 @@
     <Content Include="Views\Shared\_ModelPopup.cshtml" />
     <Content Include="Views\Shared\Delete.cshtml" />
     <Content Include="Views\Home\ViewAirline.cshtml" />
+    <None Include="Properties\PublishProfiles\mayur.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

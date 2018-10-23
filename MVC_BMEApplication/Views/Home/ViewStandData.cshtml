@@ -51,7 +51,7 @@
                 <div class="col-md-6 form-group">
                     <div class="col-md-offset-4 col-md-8">
                         <input type="submit" value="Submit" class="btn btn-default" />
-                        <a href="@Url.Action("viewBMEData", "Home")" class="btn btn-default">Cancel</a>
+                        <a href="@Url.Action("ViewStandData", "Home")" class="btn btn-default">Cancel</a>
                     </div>
                 </div>
 
@@ -70,31 +70,58 @@
                     <thead>
                         <tr>
                             <th>SR.NO.</th>
-                            <th>Flight No</th>
-                            <th>Stand Name</th>
-                            @*<th>Action</th>*@
+                            <th>FLIGHT NO.</th>
+                            <th>FLIGHT DATE</th>
+                            <th>AIRLINE NAME</th>
+                            <th>AIRCRAFT REG</th>
+                            <th>AIRCRAFT TYPE</th>
+                            <th>FLIGHT TYPE</th>
+                            <th>STAND NAME</th>
+                            <th>STAND IN DATE</th>
+                            <th>STAND IN TIME</th>
+                            <th>STAND OUT DATE</th>
+                            <th>STAND OUT TIME</th>
+                            <th>IS ASSOCIATED</th>
+                            <th>DATA SOURCE</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in ViewBag.StandDataList)
+                        @if (ViewBag.StandDataList != null)
                         {
-                            <tr>
-                                <td></td>
-                                <td>@item.FLIGHT_NUMBER </td>
-                                <td>@item.STAND_NAME</td>
-                                @*<td>
-                                        <a href="@Url.Action("ViewProfile", "Account", new { UserID = item.User_ID })" class="btn btn-tbl-edit">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <a href="@Url.Action("Delete", "Home", new { nID = item.User_ID, sType = "User", sActionName = "ManageUser", sControllerName = "Account" })" class="btn btn-tbl-delete">
-                                            <i class="fa fa-trash-o "></i>
-                                        </a>
-                                    </td>*@
-                            </tr>
+                            foreach (var item in ViewBag.StandDataList)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>@item.FLIGHT_NUMBER </td>
+                                    <td>@item.FLIGHT_DATE</td>
+                                    <td>@item.AIRLINE_NAME</td>
+                                    <td>@item.AIRCRAFT_REGN </td>
+                                    <td>@item.AIRCRAFT_TYPE</td>
+                                    <td>@item.AIRCRAFT_TYPE</td>
+                                    <td>@item.FLIGHT_TYPE </td>
+                                    <td>@item.STAND_NAME</td>
+                                    <td>@item.STAND_IN_DATE </td>
+                                    <td>@item.STAND_OUT_DATE </td>
+                                    <td>@item.STAND_OUT_TIME</td>
+                                    <td>@item.PROCESSING_DONE</td>
+                                    <td>@item.DATA_SOURCE_TYPE </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

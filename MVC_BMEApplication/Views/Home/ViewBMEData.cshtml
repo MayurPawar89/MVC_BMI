@@ -62,7 +62,7 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 </div>
             </div>
-            
+
 
             <div class="row table-responsive">
                 <table class="table table table-hover table-checkable order-column full-width dataTable" id="tblBMEList">
@@ -70,30 +70,45 @@
                         <tr>
                             <th>SR.NO.</th>
                             <th>BME ID</th>
-                            <th>Meter Type</th>
-                            @*<th>Action</th>*@
+                            <th>METER TYPE</th>
+                            <th>LOCATION</th>
+                            <th>METER NO.</th>
+                            <th>READING TIME</th>
+                            <th>START TIME</th>
+                            <th>END TIME</th>
+                            <th>IS ASSOCIATED</th>
+                            <th>DATA SOURCE</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in ViewBag.BMEDataList)
+                        @if (ViewBag.BMEDataList != null)
                         {
-                            <tr>
-                                <td></td>
-                                <td>@item.BME_ID </td>
-                                <td>@item.METER_SUB_TYPE</td>
-                                @*<td>
-                                        <a href="@Url.Action("ViewProfile", "Account", new { UserID = item.User_ID })" class="btn btn-tbl-edit">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <a href="@Url.Action("Delete", "Home", new { nID = item.User_ID, sType = "User", sActionName = "ManageUser", sControllerName = "Account" })" class="btn btn-tbl-delete">
-                                            <i class="fa fa-trash-o "></i>
-                                        </a>
-                                    </td>*@
-                            </tr>
+                            foreach (var item in ViewBag.BMEDataList)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td>@item.BME_ID </td>
+                                    <td>@item.METER_SUB_TYPE</td>
+                                    <td>@item.METER_LOCATION </td>
+                                    <td>@item.METER_NUMBER</td>
+                                    <td>@item.READING_DATE_TIME </td>
+                                    <td>@item.METER_START_TIME</td>
+                                    <td>@item.METER_END_TIME </td>
+                                    <td>@item.PROCESSING_DONE </td>
+                                    <td>@item.DATA_SOURCE_TYPE</td>
+                                </tr>
+                            }
                         }
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

@@ -68,5 +68,18 @@ namespace MVC_BMEApplication.Models
             }
             return lstStandData;
         }
+        public List<AssociationData> RetriveAssociationData()
+        {
+            List<AssociationData> lstAssociationData = null;
+            try
+            {
+                AssociationData oAssociationData = new AssociationData();
+                lstAssociationData = oAssociationData.GetAssociationData(FromDate, ToDate, Task);
+            }
+            catch (Exception)
+            {
+            }
+            return lstAssociationData;
+        }
     }
 }
